@@ -11,8 +11,8 @@ function App() {
   const [coins, setCoins] = useState<CoinsDataType>(data);
   const [coinName, setCoinName] = useState<string>("");
 
-  const filterByName = (coinName: string) =>
-    coins.find((coin) => coin.name.toLowerCase() === coinName.toLowerCase());
+  const filterByName = (cryptoName: string) =>
+    coins.find((coin) => coin.name.toLowerCase() === cryptoName.toLowerCase());
   const onInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const { value } = evt.target;
     if (!value) return;
