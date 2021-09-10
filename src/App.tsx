@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useMemo, useState } from "react";
+import React, { ChangeEvent, useMemo, useState, useRef } from "react";
 import coins from "./coins.json";
 import debounce from "lodash.debounce";
 import { FilterInput } from "./FilterInput";
@@ -31,7 +31,10 @@ function App() {
   // const debouncedInputChange = useCallback(debounce(onInputChange, 400), []);
 
   // second solution
-  const debouncedInputChange = useMemo(() => debounce(onInputChange, 400), []);
+  // const debouncedInputChange = useMemo(() => debounce(onInputChange, 400), []);
+
+  // third solution
+  const debouncedInputChange = useRef(debounce(onInputChange, 400));
 
   return (
     <main className="container mx-auto flex flex-col items-center">
@@ -90,7 +93,7 @@ function App() {
         </div>
       </div>
       <div className="w-1/3 h-20 mt-10 flex flex-col justify-center">
-        <FilterInput onInputChange={debouncedInputChange} />
+        <FilterInput onInputChange={debouncedInputChange.current} />
       </div>
     </main>
   );
